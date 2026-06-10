@@ -1,0 +1,49 @@
+# =============================================================================
+# Valura AI — Team Lead Assignment — Core Dependencies
+# =============================================================================
+# This is the minimal set we ship. Add what you need; justify additions in your README.
+
+# --- Web framework + streaming ---
+fastapi>=0.111.0
+uvicorn[standard]>=0.29.0
+sse-starlette>=1.8.2       # SSE is required by the assignment; this is the path of least resistance
+httpx>=0.27.0              # async HTTP client + TestClient
+
+# --- Validation ---
+pydantic>=2.7.0
+pydantic-settings>=2.2.0   # Settings management from .env — cleaner than raw dotenv
+
+# --- LLM ---
+openai>=1.30.0             # OpenAI Python SDK — structured outputs, streaming
+groq>=0.9.0                # Groq free-tier LLM (llama-3.3-70b) — replaces OpenAI for agent calls
+
+# --- Market Data ---
+yfinance>=0.2.36           # Free market data — no API key needed, covers all fixture exchanges
+
+# --- Math / Data ---
+numpy>=1.26.0              # Vectorized math for risk metrics (VaR, Sharpe, Beta)
+pandas>=2.1.0              # Time-series for technical indicators (RSI, MACD, SMA)
+
+# --- Templating ---
+jinja2>=3.1.0              # Template engine for structured report generation (no LLM needed)
+
+# --- Utilities ---
+python-dotenv>=1.0.0
+
+# --- Testing ---
+pytest>=8.2.0
+pytest-asyncio>=0.23.0
+pytest-mock>=3.14.0
+
+# =============================================================================
+# Dependency Justification:
+#   - pydantic-settings: Typed, validated config from env vars. No raw os.environ.
+#   - yfinance: Assignment says "do not hardcode market data". yfinance is free,
+#     covers NASDAQ/NYSE/EURONEXT/LSE/TSE, and needs zero credentials.
+#   - groq: Free-tier LLM provider (14,400 req/day, no credit card). Replaces
+#     OpenAI for conversational agents (financial_planning, support, general_query).
+#   - numpy/pandas: Pure-Python math for financial_calculator, risk_assessment,
+#     and predictive_analysis agents. No LLM needed for deterministic math.
+#   - jinja2: Template engine for structured report formatting in Tier 2 agents.
+#   - All others: Provided by the assignment starter.
+# =============================================================================
